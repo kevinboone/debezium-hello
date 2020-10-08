@@ -37,13 +37,13 @@ public class App
         pc.setLocation("classpath:application.properties");
 
         // Define the Debezium consumer endpoint
-	from ("debezium-postgres:{{database.hostname}}?"
+	from ("debezium-postgres:my_postgress_endpoint?"
           + "databaseHostname={{database.hostname}}"
           + "&databasePort={{database.port}}"
           + "&databaseUser={{database.user}}"
           + "&databasePassword={{database.password}}"
           + "&databaseDbname={{database.dbname}}"
-          + "&databaseServerName={{database.hostname}}"
+          + "&databaseServerName=my_postgress_server"
           + "&schemaWhitelist={{database.schema}}"
           + "&tableWhitelist={{database.schema}}.{{database.table}}"
           + "&offsetStorageFileName=/tmp/offset.dat"
@@ -54,7 +54,7 @@ public class App
       });
 
     // Start the routes
-    camelContext.start()e;
+    camelContext.start();
 
     // Consume messages forever
     while (true)
